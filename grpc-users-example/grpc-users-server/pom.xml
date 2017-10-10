@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.welflex.example</groupId>
+    <artifactId>grpc-users-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>grpc-users-server</artifactId>
+  <packaging>jar</packaging>
+  <name>Server module</name>
+
+
+  <properties>
+    <cassandra-driver-mapping.version>3.1.3</cassandra-driver-mapping.version>
+    <springdata.cassandra.version>1.5.0.RELEASE</springdata.cassandra.version>
+    
+  </properties>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-netty</artifactId>
+    </dependency>
+    
+    
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-protobuf</artifactId>
+    </dependency>
+  
+ 
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-stub</artifactId>
+    </dependency>
+    
+    
+    <dependency>
+      <groupId>org.pojomatic</groupId>
+      <artifactId>pojomatic</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    
+    <!--  Cassandra -->
+    <dependency>
+      <groupId>com.datastax.cassandra</groupId>
+      <artifactId>cassandra-driver-core</artifactId>
+      <version>${cassandra-driver-mapping.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.datastax.cassandra</groupId>
+      <artifactId>cassandra-driver-mapping</artifactId>
+      <version>${cassandra-driver-mapping.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-cassandra</artifactId>
+      <version>${springdata.cassandra.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>jcl-over-slf4j</groupId>
+          <artifactId>org.slf4j</artifactId>
+        </exclusion>
+      </exclusions>
+     </dependency>
+     
+     <dependency>
+      <groupId>org.cassandraunit</groupId>
+      <artifactId>cassandra-unit-spring</artifactId>
+      <version>3.0.0.1</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>jcl-over-slf4j</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
+     </dependency>
+  </dependencies>
+</project>

@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_multiple_files=true;
+option java_package="com.welflex.users.generated";
+option java_outer_classname="UsersProto";
+option objc_class_prefix="NP";
+
+package users;
+
+service Users {
+  rpc create(UserCreateRequest) returns (UserCreateResponse) {}
+  rpc getByEmail(UserByEmailRequest) returns (User) {}
+  rpc getByUserName(UserByUserNameRequest) returns (User) {}
+  rpc stream(UserStreamRequest) returns (stream User) {}
+}
+
+message User { 
+  string username = 1;
+  string email = 2;
+  string firstName = 3;
+  string lastName = 4;
+}
+
+message UserByEmailRequest {
+  string email = 1;
+}
+
+message UserByUserNameRequest {
+  string username = 1;
+}
+
+message UserCreateRequest {
+  string username = 1;
+  string email = 2;
+  string firstName = 3;
+  string lastName = 4;
+}
+
+message UserCreateResponse {
+  string result = 1;
+}
+
+message UserStreamRequest {
+  int32 offset = 1;
+  int32 pageSize = 2;
+}
